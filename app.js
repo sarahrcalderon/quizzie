@@ -1,11 +1,5 @@
-type Question = {
-    question: string;
-    options: string[];
-    correctAnswer: string;
-};
-
 // Perguntas
-const questions: Question[] = [
+var questions = [
     {
         question: "Qual foi o primeiro console do mundo?",
         options: ["Dynavision", "Atari", "Magnavox Odyssey", "Sega"],
@@ -37,31 +31,27 @@ const questions: Question[] = [
         correctAnswer: "Oceano Pacífico"
     }
 ];
-
 // apresenta uma pergunta e receber a resposta
-function askQuestion(question: Question): string {
-    const { question: q, options } = question;
-    const optionsStr = options.map((option, index) => `${index + 1}. ${option}`).join("\n");
-    const answer = prompt(`${q}\n${optionsStr}\nEscolha uma opção (digite o número):`);
-
+function askQuestion(question) {
+    var q = question.question, options = question.options;
+    var optionsStr = options.map(function (option, index) { return "".concat(index + 1, ". ").concat(option); }).join("\n");
+    var answer = prompt("".concat(q, "\n").concat(optionsStr, "\nEscolha uma op\u00E7\u00E3o (digite o n\u00FAmero):"));
     return options[parseInt(answer || "", 10) - 1] || "";
 }
-
 // Quiz
 function runQuiz() {
-    let score = 0;
-
-    for (const question of questions) {
-        const userAnswer = askQuestion(question);
+    var score = 0;
+    for (var _i = 0, questions_1 = questions; _i < questions_1.length; _i++) {
+        var question = questions_1[_i];
+        var userAnswer = askQuestion(question);
         if (userAnswer.toLowerCase() === question.correctAnswer.toLowerCase()) {
             console.log("Resposta correta!");
             score++;
-        } else {
-            console.log(`Resposta incorreta. A resposta correta era: ${question.correctAnswer}`);
+        }
+        else {
+            console.log("Resposta incorreta. A resposta correta era: ".concat(question.correctAnswer));
         }
     }
-
-    console.log(`Fim do quiz! Sua pontuação final é: ${score}/${questions.length}`);
+    console.log("Fim do quiz! Sua pontua\u00E7\u00E3o final \u00E9: ".concat(score, "/").concat(questions.length));
 }
-
 runQuiz();
