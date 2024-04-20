@@ -1,28 +1,40 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #f3f3f3;
+    margin: 0;
+    padding: 0;
+   
 }
 
 #quiz-container {
-    max-width: 600px;
+    width: 500px;
+    max-width: 100%; 
     margin: 50px auto;
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden; 
 }
 
 h1 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 3rem;
     text-align: center;
 }
 
 #question-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
     margin-bottom: 20px;
+    font-family: "Montserrat", sans-serif;
 }
 
 button {
-    padding: 10px 20px;
-    background-color: #007bff;
+    max-width: 100%;
+    padding: 10px;
+    background-color: #0468d2;
+    font-family: "Montserrat", sans-serif;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -38,4 +50,46 @@ button:hover {
     font-weight: bold;
     text-align: center;
     display: none;
+}
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+.social-icons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    display: inline-block;
+    margin: 0 10px; 
+}
+
+.social-icons img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.social-icons img:hover {
+    transform: scale(1.2);
+}
+
+footer p {
+    font-size: 14px;
+    margin: 0;
+}
+
+@media only screen and (max-width: 600px) {
+    .social-icons {
+        flex-wrap: wrap;
+    }
+
+    .social-icons a {
+        margin: 5px; 
+    }
 }

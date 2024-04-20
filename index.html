@@ -4,15 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
     <title>Perguntas Aleatórias</title>
 </head>
 <body>
     <div id="quiz-container">
         <h1>Quiz</h1>
         <div id="question-container"></div>
-        <button id="next-btn">Próxima Pergunta</button>
+        <div id="buttons-container">
+            <button id="next-btn">Próxima Pergunta</button>
+            <button id="finish-btn" style="display: none;">Finalizar Quiz</button>
+            <button id="restart-btn" style="display: none;">Reiniciar Quiz</button>
+
+        </div>
         <div id="resultado-container"></div>
     </div>
     <script src="app.js"></script>
+    <footer>
+        <div class="social-icons">
+            <a href="https://github.com/sarahrcalderon" target="_blank"><img src="github-icon.png" alt="GitHub"></a>
+            <a href="https://www.linkedin.com/in/srcalderon/" target="_blank"><img src="linkedin-icon.png" alt="LinkedIn"></a>
+        </div>
+        <p>© 2024 Sarah Calderon</p>
+    </footer>
 </body>
+
+
 </html>
