@@ -1,5 +1,6 @@
 var indicePerguntaAtual = 0;
-var pontuacao = 0;
+var pontuacaoCorreta = 0;
+var pontuacaoErrada = 0;
 var containerResultado;
 var containerBotoes;
 var btnRestart;
@@ -33,7 +34,18 @@ var questions = [
         question: "Qual é o maior oceano do mundo?",
         options: ["Oceano Atlântico", "Oceano Índico", "Oceano Pacífico", "Oceano Ártico"],
         correctAnswer: "Oceano Pacífico"
-    }
+    },
+    {
+        question: "Quem criou a igreja anglicana?",
+        options: ["Agostinho de Hipona", "Henrique VIII", "Tertuliano", "Tomás Cranmer"],
+        correctAnswer: "Henrique VIII"
+    },
+    {
+        question: "O Malleus Maleficarum, de Heinrich Kraemer foi muito utilizado para qual propósito?",
+        options: ["Na prática de catecismo", "Leitura comum para rituais pagãos", "Tornou-se o guia dos inquisidores",
+            "Um trecho de pergaminho perdio de, Hypátia"],
+        correctAnswer: "Tornou-se o guia dos inquisidores"
+    },
 ];
 // Apresenta uma pergunta e recebe a resposta
 function apresentarPergunta(pergunta) {
@@ -51,14 +63,6 @@ function apresentarPergunta(pergunta) {
             var opcaoSelecionada = document.querySelector('input[name="resposta"]:checked');
             var respostaUsuario = opcaoSelecionada ? opcaoSelecionada.value : "";
             verificarResposta(respostaUsuario, pergunta.correctAnswer);
-            // Avança para a próxima pergunta
-            indicePerguntaAtual++;
-            if (indicePerguntaAtual < questions.length) {
-                apresentarPergunta(questions[indicePerguntaAtual]);
-            }
-            else {
-                finalizarQuiz();
-            }
         });
     }
 }
@@ -66,17 +70,22 @@ function apresentarPergunta(pergunta) {
 function verificarResposta(respostaUsuario, respostaCorreta) {
     if (respostaUsuario.toLowerCase() === respostaCorreta.toLowerCase()) {
         console.log("Resposta correta!");
-        pontuacao++;
+        pontuacaoCorreta++;
+    }
+    // Avança para a próxima pergunta ou finaliza o quiz
+    indicePerguntaAtual++;
+    if (indicePerguntaAtual < questions.length) {
+        apresentarPergunta(questions[indicePerguntaAtual]);
     }
     else {
-        console.log("Resposta incorreta. A resposta correta era: ".concat(respostaCorreta));
+        finalizarQuiz();
     }
 }
 // Finaliza o quiz e mostra a pontuação
 function finalizarQuiz() {
     var containerResultado = document.getElementById("resultado-container");
     if (containerResultado) {
-        containerResultado.innerHTML = "Fim do quiz! Sua pontua\u00E7\u00E3o final \u00E9: ".concat(pontuacao, "/").concat(questions.length);
+        containerResultado.innerHTML = "Fim do quiz! Pontua\u00E7\u00E3o final:\n Corretas: ".concat(pontuacaoCorreta, "\nErradas: ").concat(pontuacaoErrada);
         containerResultado.style.display = "block";
     }
     var containerBotoes = document.getElementById("buttons-container");
@@ -86,7 +95,8 @@ function finalizarQuiz() {
 }
 function reiniciarQuiz() {
     indicePerguntaAtual = 0;
-    pontuacao = 0;
+    pontuacaoCorreta = 0;
+    pontuacaoErrada = 0;
     if (containerResultado) {
         containerResultado.style.display = "none";
     }
