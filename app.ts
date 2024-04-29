@@ -5,8 +5,8 @@ type Question = {
 };
 
 let indicePerguntaAtual = 0;
-let pontuacaoCorreta = 0; 
-let pontuacaoErrada = 0;
+let pontuacaoCorreta = 0;
+let pontuacaoErrada = 0; 
 let containerResultado: HTMLElement | null;
 let containerBotoes: HTMLElement | null;
 let btnRestart: HTMLElement | null;
@@ -79,19 +79,41 @@ function apresentarPergunta(pergunta: Question): void {
 
 // Verifica a resposta do usuario
 function verificarResposta(respostaUsuario: string, respostaCorreta: string) {
-    if (respostaUsuario.toLowerCase() === respostaCorreta.toLowerCase()) {
+    console.log("Resposta do usuário:", respostaUsuario);
+    console.log("Resposta correta:", respostaCorreta);
+
+    const perguntaAtual = questions[indicePerguntaAtual];
+    const respostaCorretaFormatada = perguntaAtual.correctAnswer.trim().toLowerCase();
+
+    console.log("Resposta correta da pergunta atual formatada:", respostaCorretaFormatada);
+
+    if (respostaUsuario.trim().toLowerCase() === respostaCorretaFormatada) {
         console.log("Resposta correta!");
         pontuacaoCorreta++;
+    } else {
+        console.log("Resposta errada!");
+        pontuacaoErrada++;
     }
 
-    // Avança para a próxima pergunta ou finaliza o quiz
-    indicePerguntaAtual++;
+    console.log("Pontuação correta:", pontuacaoCorreta);
+    console.log("Pontuação errada:", pontuacaoErrada);
+
+    if (respostaUsuario.trim() !== '') {
+        indicePerguntaAtual++;
+    }
+
     if (indicePerguntaAtual < questions.length) {
         apresentarPergunta(questions[indicePerguntaAtual]);
     } else {
         finalizarQuiz();
     }
 }
+
+
+
+
+
+
 
 // Finaliza o quiz e mostra a pontuação
 function finalizarQuiz() {

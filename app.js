@@ -68,12 +68,24 @@ function apresentarPergunta(pergunta) {
 }
 // Verifica a resposta do usuario
 function verificarResposta(respostaUsuario, respostaCorreta) {
-    if (respostaUsuario.toLowerCase() === respostaCorreta.toLowerCase()) {
+    console.log("Resposta do usuário:", respostaUsuario);
+    console.log("Resposta correta:", respostaCorreta);
+    var perguntaAtual = questions[indicePerguntaAtual];
+    var respostaCorretaFormatada = perguntaAtual.correctAnswer.trim().toLowerCase();
+    console.log("Resposta correta da pergunta atual formatada:", respostaCorretaFormatada);
+    if (respostaUsuario.trim().toLowerCase() === respostaCorretaFormatada) {
         console.log("Resposta correta!");
         pontuacaoCorreta++;
     }
-    // Avança para a próxima pergunta ou finaliza o quiz
-    indicePerguntaAtual++;
+    else {
+        console.log("Resposta errada!");
+        pontuacaoErrada++;
+    }
+    console.log("Pontuação correta:", pontuacaoCorreta);
+    console.log("Pontuação errada:", pontuacaoErrada);
+    if (respostaUsuario.trim() !== '') {
+        indicePerguntaAtual++;
+    }
     if (indicePerguntaAtual < questions.length) {
         apresentarPergunta(questions[indicePerguntaAtual]);
     }
