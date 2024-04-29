@@ -71,6 +71,10 @@ function verificarResposta(respostaUsuario, respostaCorreta) {
     console.log("Resposta do usuário:", respostaUsuario);
     console.log("Resposta correta:", respostaCorreta);
     var perguntaAtual = questions[indicePerguntaAtual];
+    if (!perguntaAtual) {
+        console.error("Pergunta atual não encontrada!");
+        return;
+    }
     var respostaCorretaFormatada = perguntaAtual.correctAnswer.trim().toLowerCase();
     console.log("Resposta correta da pergunta atual formatada:", respostaCorretaFormatada);
     if (respostaUsuario.trim().toLowerCase() === respostaCorretaFormatada) {

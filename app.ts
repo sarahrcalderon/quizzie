@@ -83,6 +83,11 @@ function verificarResposta(respostaUsuario: string, respostaCorreta: string) {
     console.log("Resposta correta:", respostaCorreta);
 
     const perguntaAtual = questions[indicePerguntaAtual];
+    if (!perguntaAtual) {
+        console.error("Pergunta atual não encontrada!");
+        return;
+    }
+
     const respostaCorretaFormatada = perguntaAtual.correctAnswer.trim().toLowerCase();
 
     console.log("Resposta correta da pergunta atual formatada:", respostaCorretaFormatada);
@@ -108,11 +113,6 @@ function verificarResposta(respostaUsuario: string, respostaCorreta: string) {
         finalizarQuiz();
     }
 }
-
-
-
-
-
 
 
 // Finaliza o quiz e mostra a pontuação
